@@ -1,0 +1,15 @@
+# Dados e Banco (Pesados)
+data/
+*.duckdb
+*.duckdb.wal
+*.csv
+
+# Python
+__pycache__/
+.venv/
+.env
+
+# dbt
+target/
+dbt_packages/
+logs/
