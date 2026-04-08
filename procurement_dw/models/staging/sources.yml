@@ -1,0 +1,7 @@
+version: 2
+
+sources:
+  - name: raw_data # Nome lógico da fonte
+    schema: main
+    tables:
+      - name: raw_procurement # Nome exato da tabela que o Python criou

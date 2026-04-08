@@ -1,0 +1,8 @@
+# profiles.yml dentro da pasta do projeto
+procurement_dw:
+  outputs:
+    dev:
+      type: duckdb
+      path: ../procurement.duckdb # Sobe um nível para achar o banco na raiz
+      schema: main
+  target: dev
