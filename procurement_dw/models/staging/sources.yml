@@ -3,5 +3,12 @@ version: 2
 sources:
   - name: raw_data # Nome lógico da fonte
     schema: main
+    description: "Dados brutos de compras carregados via script Python."
     tables:
       - name: raw_procurement # Nome exato da tabela que o Python criou
+        description: "Tabela principal com registros de ordens de compra."
+        columns:
+          - name: PO_ID # O nome original
+            tests:
+              - unique
+              - not_null

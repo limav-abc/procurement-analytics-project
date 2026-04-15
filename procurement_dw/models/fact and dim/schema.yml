@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: fct_procurement_performance
+    description: "Tabela de fato que consolida as métricas de performance de compras."
+    columns:
+      - name: purchase_order_id
+        description: "ID único do pedido de compra."
+        tests:
+          - unique
+          - not_null
+
+      - name: supplier_id
+        description: "Chave estrangeira para a dimensão de fornecedores."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_suppliers')
+                field: supplier_id
+
+      - name: category_id
+        description: "Chave estrangeira para a dimensão de categorias."
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_categories')
+                field: category_id
+
+      - name: total_savings
+        description: "Valor economizado na negociação."
+        tests:
+          - not_null

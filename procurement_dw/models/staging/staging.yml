@@ -1,9 +1,11 @@
 version: 2
 
 models:
-  - name: stg_raw_procurement
+  - name: stg_procurement 
+    description: "Limpeza inicial dos dados de compras."
     columns:
-      - name: PO_ID
+      - name: po_id
+        description: "Chave primária da ordem de compra."
         tests:
           - not_null
           - unique
