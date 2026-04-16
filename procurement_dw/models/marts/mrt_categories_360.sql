@@ -69,21 +69,21 @@ final_metrics as(
 
         round(supplier_average_price_in_category - category_average_price, 2) 
         as absolute_price_variance,
-        round(((supplier_average_price_in_category - category_average_price) / nullif(category_average_price, 0)) * 100, 2) 
+        round(((supplier_average_price_in_category - category_average_price) / nullif(category_average_price, 0)), 2) 
         as percentage_price_variance,
 
-        round((supplier_savings_in_category/nullif(total_category_orders_value, 0)) * 100, 2) 
+        round((supplier_savings_in_category/nullif(total_category_orders_value, 0)), 2) 
         as supplier_savings_pct_in_category,
-        round((supplier_savings_in_category/nullif(total_category_savings, 0)) * 100, 2) 
+        round((supplier_savings_in_category/nullif(total_category_savings, 0)), 2) 
         as supplier_savings_share_in_category,
-        round((supplier_spend_in_category/nullif(total_category_spend, 0)) * 100, 2) 
+        round((supplier_spend_in_category/nullif(total_category_spend, 0)), 2) 
         as supplier_spend_share_in_category,
 
-        round((total_category_savings/nullif(total_category_orders_value, 0)) * 100, 2) 
+        round((total_category_savings/nullif(total_category_orders_value, 0)), 2) 
         as category_savings_pct,
-        round((total_category_savings/nullif(total_company_savings, 0)) * 100, 2) 
+        round((total_category_savings/nullif(total_company_savings, 0)), 2) 
         as category_savings_share_in_company,
-        round((total_category_spend/nullif(total_company_spend, 0)) * 100, 2)
+        round((total_category_spend/nullif(total_company_spend, 0)), 2)
         as category_spend_share_in_company
 
     from calculated_metrics

@@ -50,21 +50,21 @@ supplier_quality_stats as (
         sum(sum(quantity)) over(partition by supplier_id) as supplier_total_quantity,
 
         round(
-            sum(defective_units) / nullif(sum(quantity), 0) * 100, 2
+            sum(defective_units) / nullif(sum(quantity), 0), 2
         ) as defective_rate,
 
         round(
-            avg(sum(defective_units) / nullif(sum(quantity), 0) * 100) over(partition by category_id), 2
+            avg(sum(defective_units) / nullif(sum(quantity), 0)) over(partition by category_id), 2
         ) as category_avg_defective_rate,
 
         round(
             sum(sum(defective_units)) over(partition by supplier_id) / 
-            nullif(sum(sum(quantity)) over(partition by supplier_id), 0) * 100, 2
+            nullif(sum(sum(quantity)) over(partition by supplier_id), 0), 2
         ) as supplier_overall_defective_rate,
 
         round(
             sum(sum(defective_units)) over(partition by category_id) / 
-            nullif(sum(sum(quantity)) over(partition by category_id), 0) * 100, 2
+            nullif(sum(sum(quantity)) over(partition by category_id), 0), 2
         ) as category_overall_defective_rate
 
     from prepared_data
@@ -119,13 +119,13 @@ calculated_savings as(
         sum(total_negotiated_value) as overall_supplier_spend,
         sum(total_savings) as overall_supplier_savings,
 
-        round((sum(total_savings)/nullif(sum(total_order_value), 0)) * 100, 2) 
+        round((sum(total_savings)/nullif(sum(total_order_value), 0)), 2) 
         as overall_supplier_savings_pct,
 
-        round((sum(total_savings)/nullif(sum(sum(total_savings)) over(), 0)) * 100, 2) 
+        round((sum(total_savings)/nullif(sum(sum(total_savings)) over(), 0)), 2) 
         as supplier_savings_share_in_company,
 
-        round((sum(total_negotiated_value)/nullif(sum(sum(total_negotiated_value)) over(), 0)) * 100, 2) 
+        round((sum(total_negotiated_value)/nullif(sum(sum(total_negotiated_value)) over(), 0)), 2) 
         as supplier_spend_share_in_company
 
     from prepared_data 
